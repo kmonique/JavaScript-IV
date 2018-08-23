@@ -24,6 +24,17 @@ class Instructor extends People{
     grade(student, subject){
         return `${student.name}, recieves a perfect score on ${subject}`;
     }
+    changeGrade(student) {
+        let random = Math.random();
+        if (student.grade < 100){
+            if(random > .4 ){
+                student.grade = student.grade + (random * 10);
+                return `${student.name}'s grade improved to ${student.grade}. ${this.name} is pleased`;
+            }
+            student.grade = student.grade - (random * 10);
+            return `${student.name}'s grade dropped to ${student.grade}. ${this.name} will gladly help them improve`;
+        }
+    }
 }
 
 class Student extends People{
@@ -32,6 +43,7 @@ class Student extends People{
         this.previousBackground = studentAttributes.previousBackground;
         this.className = studentAttributes.className;
         this.favSubjects = studentAttributes.favSubjects;
+        this.grade = studentAttributes.grade;
     }
     listsSubjects(subjectarray){
         subjectarray.forEach(function (item){
@@ -90,6 +102,7 @@ const Dan = new Instructor({
     previousBackground: "none",
     className: "CPT3",
     favSubjects: ['Html', 'CSS', 'JavaScript', 'back-end stuff'],
+    grade: 90,
   });
 
   //Instructor Methods
@@ -106,4 +119,8 @@ const Dan = new Instructor({
   console.log(Bobby.speak());
   Bobby.listsSubjects(Bobby.favSubjects);
   console.log(Bobby.PRAssignment("Python"));
-  console.log(Bobby.sprintChallenge("Elm"));
+  console.log(Bobby.sprintChallenge("Elm \n"));
+
+  //Stretch Goals
+  console.log(Dan.changeGrade(Bobby));
+  console.log(John.changeGrade(Bobby));
