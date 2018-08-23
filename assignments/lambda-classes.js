@@ -56,6 +56,13 @@ class Student extends People{
     sprintChallenge(subject){
         return `${this.name} has begun Sprint Challenge for ${subject}`
     }
+    graduate(instructor) {
+        while (this.grade < 70){
+            instructor.changeGrade(this);
+            console.log(`${this.name}'s grades are too low to graduate. ${instructor.name} has regraded their work and changed their grade to ${this.grade}`);
+        }
+        return `${this.name} is graduating from Lambda School!`;
+    }
 }
 
 class ProjectManager extends Instructor{
@@ -102,7 +109,7 @@ const Dan = new Instructor({
     previousBackground: "none",
     className: "CPT3",
     favSubjects: ['Html', 'CSS', 'JavaScript', 'back-end stuff'],
-    grade: 90,
+    grade: 50,
   });
 
   //Instructor Methods
@@ -124,3 +131,4 @@ const Dan = new Instructor({
   //Stretch Goals
   console.log(Dan.changeGrade(Bobby));
   console.log(John.changeGrade(Bobby));
+  console.log(Bobby.graduate(Dan));
